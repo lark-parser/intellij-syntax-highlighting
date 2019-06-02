@@ -25,6 +25,8 @@
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.lark.syntax.LarkFileTypeFactory"/>
     <lang.parserDefinition language="lark" implementationClass="com.lark.syntax.LarkParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="lark" implementationClass="com.lark.syntax.LarkSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.lark.syntax.LarkColorSettingsPage"/>
   </extensions>
 
   <actions>
