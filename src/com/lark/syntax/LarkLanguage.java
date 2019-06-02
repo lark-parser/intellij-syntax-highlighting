@@ -6,6 +6,6 @@ public class LarkLanguage extends Language {
     public static final LarkLanguage INSTANCE = new LarkLanguage();
 
     private LarkLanguage() {
-        super("Lark");
+        super("lark");
     }
 }

@@ -1,0 +1,48 @@
+{
+    parserClass="com.lark.syntax.parser.LarkParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Lark"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.lark.syntax.psi"
+    psiImplPackage="com.lark.syntax.psi.impl"
+
+    elementTypeHolderClass="com.lark.syntax.psi.LarkTypes"
+    elementTypeClass="com.lark.syntax.psi.LarkElementType"
+    tokenTypeClass="com.lark.syntax.psi.LarkTokenType"
+}
+
+larkFile ::= (item_ | NEWLINE | COMMENT)*
+
+private item_ ::= rule_def
+                | token_def
+                | statement
+
+rule_def ::= RULE priority? COLON expansions NEWLINE
+token_def ::= TOKEN priority? COLON expansions NEWLINE
+
+priority ::= DOT NUMBER
+
+statement ::= IGNORE expansions NEWLINE
+            | IMPORT import_args [ARROW rule_name] NEWLINE
+            | DECLARE rule_name+ NEWLINE
+
+import_args ::= DOT? rule_name (DOT rule_name)*
+
+expansions ::= alias (VBAR alias)*
+
+alias ::= expansion [ARROW RULE]
+
+expansion ::= expr*
+
+expr ::= atom [QUANT | TILDE NUMBER [DOT_DOT NUMBER]]
+
+atom ::= OP expansions CP
+       | OB expansions CB
+       | STRING DOT_DOT STRING
+       | rule_name
+       | (REGEXP | STRING)
+
+rule_name ::= RULE
+            | TOKEN

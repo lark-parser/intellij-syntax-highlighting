@@ -5,7 +5,7 @@
   <vendor email="trampchamp@hotmail.de" url="https://github.com/lark-parser/lark">MegaIng</vendor>
 
   <description>
-    Support for Syntax highlighting of <a href="https://github.com/lark-parser/lark">lark grammar</a>.
+    Support for Syntax highlighting of BNF-grammar with lark-flavour.
     Is currently work-in-progress
   </description>
 
@@ -24,6 +24,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.lark.syntax.LarkFileTypeFactory"/>
+    <lang.parserDefinition language="lark" implementationClass="com.lark.syntax.LarkParserDefinition"/>
   </extensions>
 
   <actions>
