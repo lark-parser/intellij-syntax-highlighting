@@ -1,0 +1,33 @@
+<idea-plugin>
+  <id>com.lark.syntax</id>
+  <name>Lark Grammar Syntax Highlighter</name>
+  <version>1.0</version>
+  <vendor email="trampchamp@hotmail.de" url="https://github.com/lark-parser/lark">MegaIng</vendor>
+
+  <description>
+    Support for Syntax highlighting of <a href="https://github.com/lark-parser/lark">lark grammar</a>.
+    Is currently work-in-progress
+  </description>
+
+  <change-notes>
+    Initial commit. Currently testing that anything works.
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.lark.syntax.LarkFileTypeFactory"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
