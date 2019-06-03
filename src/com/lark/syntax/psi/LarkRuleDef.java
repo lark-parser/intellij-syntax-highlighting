@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface LarkRuleDef extends PsiElement {
 
-  @NotNull
+  @Nullable
   LarkExpansions getExpansions();
 
   @Nullable

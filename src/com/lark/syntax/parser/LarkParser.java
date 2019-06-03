@@ -38,7 +38,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expansion [ARROW RULE]
+  // expansion [ARROW [RULE]]
   public static boolean alias(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "alias")) return false;
     boolean r;
@@ -49,10 +49,28 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // [ARROW RULE]
+  // [ARROW [RULE]]
   private static boolean alias_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "alias_1")) return false;
-    parseTokens(b, 0, ARROW, RULE);
+    alias_1_0(b, l + 1);
+    return true;
+  }
+
+  // ARROW [RULE]
+  private static boolean alias_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "alias_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ARROW);
+    r = r && alias_1_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // [RULE]
+  private static boolean alias_1_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "alias_1_0_1")) return false;
+    consumeToken(b, RULE);
     return true;
   }
 
@@ -123,7 +141,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // alias (VBAR alias)*
+  // alias ((COMMENT? NEWLINE)? VBAR alias)*
   public static boolean expansions(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expansions")) return false;
     boolean r;
@@ -134,7 +152,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (VBAR alias)*
+  // ((COMMENT? NEWLINE)? VBAR alias)*
   private static boolean expansions_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expansions_1")) return false;
     while (true) {
@@ -145,15 +163,41 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // VBAR alias
+  // (COMMENT? NEWLINE)? VBAR alias
   private static boolean expansions_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expansions_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, VBAR);
+    r = expansions_1_0_0(b, l + 1);
+    r = r && consumeToken(b, VBAR);
     r = r && alias(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  // (COMMENT? NEWLINE)?
+  private static boolean expansions_1_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "expansions_1_0_0")) return false;
+    expansions_1_0_0_0(b, l + 1);
+    return true;
+  }
+
+  // COMMENT? NEWLINE
+  private static boolean expansions_1_0_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "expansions_1_0_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = expansions_1_0_0_0_0(b, l + 1);
+    r = r && consumeToken(b, NEWLINE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // COMMENT?
+  private static boolean expansions_1_0_0_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "expansions_1_0_0_0_0")) return false;
+    consumeToken(b, COMMENT);
+    return true;
   }
 
   /* ********************************************************** */
@@ -260,7 +304,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (item_ | NEWLINE | COMMENT)*
+  // (item_ | line_end_)*
   static boolean larkFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "larkFile")) return false;
     while (true) {
@@ -271,30 +315,67 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // item_ | NEWLINE | COMMENT
+  // item_ | line_end_
   private static boolean larkFile_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "larkFile_0")) return false;
     boolean r;
     r = item_(b, l + 1);
-    if (!r) r = consumeToken(b, NEWLINE);
-    if (!r) r = consumeToken(b, COMMENT);
+    if (!r) r = line_end_(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // DOT NUMBER
+  // COMMENT? (NEWLINE|<<eof>>)
+  static boolean line_end_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "line_end_")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = line_end__0(b, l + 1);
+    r = r && line_end__1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // COMMENT?
+  private static boolean line_end__0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "line_end__0")) return false;
+    consumeToken(b, COMMENT);
+    return true;
+  }
+
+  // NEWLINE|<<eof>>
+  private static boolean line_end__1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "line_end__1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, NEWLINE);
+    if (!r) r = eof(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // DOT [NUMBER]
   public static boolean priority(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "priority")) return false;
     if (!nextTokenIs(b, DOT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, DOT, NUMBER);
+    r = consumeToken(b, DOT);
+    r = r && priority_1(b, l + 1);
     exit_section_(b, m, PRIORITY, r);
     return r;
   }
 
+  // [NUMBER]
+  private static boolean priority_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "priority_1")) return false;
+    consumeToken(b, NUMBER);
+    return true;
+  }
+
   /* ********************************************************** */
-  // RULE priority? COLON expansions NEWLINE
+  // RULE priority? [COLON expansions] line_end_
   public static boolean rule_def(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "rule_def")) return false;
     if (!nextTokenIs(b, RULE)) return false;
@@ -302,9 +383,8 @@ public class LarkParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, RULE);
     r = r && rule_def_1(b, l + 1);
-    r = r && consumeToken(b, COLON);
-    r = r && expansions(b, l + 1);
-    r = r && consumeToken(b, NEWLINE);
+    r = r && rule_def_2(b, l + 1);
+    r = r && line_end_(b, l + 1);
     exit_section_(b, m, RULE_DEF, r);
     return r;
   }
@@ -314,6 +394,24 @@ public class LarkParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "rule_def_1")) return false;
     priority(b, l + 1);
     return true;
+  }
+
+  // [COLON expansions]
+  private static boolean rule_def_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "rule_def_2")) return false;
+    rule_def_2_0(b, l + 1);
+    return true;
+  }
+
+  // COLON expansions
+  private static boolean rule_def_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "rule_def_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COLON);
+    r = r && expansions(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -331,9 +429,9 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IGNORE expansions NEWLINE
-  //             | IMPORT import_args [ARROW rule_name] NEWLINE
-  //             | DECLARE rule_name+ NEWLINE
+  // IGNORE expansions line_end_
+  //             | IMPORT import_args [ARROW rule_name] line_end_
+  //             | DECLARE rule_name+ line_end_
   public static boolean statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statement")) return false;
     boolean r;
@@ -345,19 +443,19 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // IGNORE expansions NEWLINE
+  // IGNORE expansions line_end_
   private static boolean statement_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statement_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, IGNORE);
     r = r && expansions(b, l + 1);
-    r = r && consumeToken(b, NEWLINE);
+    r = r && line_end_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // IMPORT import_args [ARROW rule_name] NEWLINE
+  // IMPORT import_args [ARROW rule_name] line_end_
   private static boolean statement_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statement_1")) return false;
     boolean r;
@@ -365,7 +463,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, IMPORT);
     r = r && import_args(b, l + 1);
     r = r && statement_1_2(b, l + 1);
-    r = r && consumeToken(b, NEWLINE);
+    r = r && line_end_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -388,14 +486,14 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // DECLARE rule_name+ NEWLINE
+  // DECLARE rule_name+ line_end_
   private static boolean statement_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statement_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, DECLARE);
     r = r && statement_2_1(b, l + 1);
-    r = r && consumeToken(b, NEWLINE);
+    r = r && line_end_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -416,7 +514,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TOKEN priority? COLON expansions NEWLINE
+  // TOKEN priority? [COLON expansions] line_end_
   public static boolean token_def(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "token_def")) return false;
     if (!nextTokenIs(b, TOKEN)) return false;
@@ -424,9 +522,8 @@ public class LarkParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, TOKEN);
     r = r && token_def_1(b, l + 1);
-    r = r && consumeToken(b, COLON);
-    r = r && expansions(b, l + 1);
-    r = r && consumeToken(b, NEWLINE);
+    r = r && token_def_2(b, l + 1);
+    r = r && line_end_(b, l + 1);
     exit_section_(b, m, TOKEN_DEF, r);
     return r;
   }
@@ -436,6 +533,24 @@ public class LarkParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "token_def_1")) return false;
     priority(b, l + 1);
     return true;
+  }
+
+  // [COLON expansions]
+  private static boolean token_def_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "token_def_2")) return false;
+    token_def_2_0(b, l + 1);
+    return true;
+  }
+
+  // COLON expansions
+  private static boolean token_def_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "token_def_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COLON);
+    r = r && expansions(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
   }
 
 }

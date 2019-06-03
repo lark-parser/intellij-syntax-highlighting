@@ -19,7 +19,7 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
             DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey ALIAS = createTextAttributesKey("LARK_ALIAS",
             DefaultLanguageHighlighterColors.OPERATION_SIGN);
-    public static final TextAttributesKey QUANTIFIER = createTextAttributesKey("LARK_QUANTIFIER",
+    public static final TextAttributesKey OPERATOR = createTextAttributesKey("LARK_OPERATOR",
             DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey STRING = createTextAttributesKey("LARK_STRING",
             DefaultLanguageHighlighterColors.STRING);
@@ -36,7 +36,7 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] KEYWORD_KEYS = new TextAttributesKey[]{KEYWORD};
     private static final TextAttributesKey[] ASSIGN_KEYS = new TextAttributesKey[]{ASSIGN};
     private static final TextAttributesKey[] ALIAS_KEYS = new TextAttributesKey[]{ALIAS};
-    private static final TextAttributesKey[] QUANTIFIER_KEYS = new TextAttributesKey[]{QUANTIFIER};
+    private static final TextAttributesKey[] OPERATORS_KEYS = new TextAttributesKey[]{OPERATOR};
     private static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
     private static final TextAttributesKey[] REGEXP_KEYS = new TextAttributesKey[]{REGEXP};
     private static final TextAttributesKey[] RULE_KEYS = new TextAttributesKey[]{RULE};
@@ -54,14 +54,18 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        if (tokenType.equals(LarkTypes.COLON)) {
+        System.out.println(tokenType);
+        if (tokenType == null) {
+            return EMPTY_KEYS;
+        } else if (tokenType.equals(LarkTypes.COLON)) {
             return ASSIGN_KEYS;
         } else if (tokenType.equals(LarkTypes.IGNORE) ||
                 tokenType.equals(LarkTypes.DECLARE) ||
                 tokenType.equals(LarkTypes.IMPORT)) {
             return KEYWORD_KEYS;
-        } else if (tokenType.equals(LarkTypes.QUANT)) {
-            return QUANTIFIER_KEYS;
+        } else if (tokenType.equals(LarkTypes.QUANT) ||
+                tokenType.equals(LarkTypes.VBAR)) {
+            return OPERATORS_KEYS;
         } else if (tokenType.equals(LarkTypes.STRING)) {
             return STRING_KEYS;
         } else if (tokenType.equals(LarkTypes.REGEXP)) {

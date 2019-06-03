@@ -13,26 +13,27 @@
     tokenTypeClass="com.lark.syntax.psi.LarkTokenType"
 }
 
-larkFile ::= (item_ | NEWLINE | COMMENT)*
+larkFile ::= (item_ | line_end_)*
 
 private item_ ::= rule_def
                 | token_def
                 | statement
+private line_end_ ::= COMMENT? (NEWLINE|<<eof>>)
 
-rule_def ::= RULE priority? COLON expansions NEWLINE
-token_def ::= TOKEN priority? COLON expansions NEWLINE
+rule_def ::= RULE priority? [COLON expansions] line_end_
+token_def ::= TOKEN priority? [COLON expansions] line_end_
 
-priority ::= DOT NUMBER
+priority ::= DOT [NUMBER]
 
-statement ::= IGNORE expansions NEWLINE
-            | IMPORT import_args [ARROW rule_name] NEWLINE
-            | DECLARE rule_name+ NEWLINE
+statement ::= IGNORE expansions line_end_
+            | IMPORT import_args [ARROW rule_name] line_end_
+            | DECLARE rule_name+ line_end_
 
 import_args ::= DOT? rule_name (DOT rule_name)*
 
-expansions ::= alias (VBAR alias)*
+expansions ::= alias ((COMMENT? NEWLINE)? VBAR alias)*
 
-alias ::= expansion [ARROW RULE]
+alias ::= expansion [ARROW [RULE]]
 
 expansion ::= expr*
 

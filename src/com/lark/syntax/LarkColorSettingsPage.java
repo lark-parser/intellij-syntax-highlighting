@@ -17,7 +17,7 @@ public class LarkColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Token Name", LarkSyntaxHighlighter.TOKEN),
             new AttributesDescriptor("Assign Colon", LarkSyntaxHighlighter.ASSIGN),
             new AttributesDescriptor("Alias Arrow", LarkSyntaxHighlighter.ALIAS),
-            new AttributesDescriptor("Quantifiers", LarkSyntaxHighlighter.QUANTIFIER),
+            new AttributesDescriptor("Operators", LarkSyntaxHighlighter.OPERATOR),
             new AttributesDescriptor("Keyword", LarkSyntaxHighlighter.KEYWORD),
             new AttributesDescriptor("String", LarkSyntaxHighlighter.STRING),
             new AttributesDescriptor("Regexp", LarkSyntaxHighlighter.REGEXP),

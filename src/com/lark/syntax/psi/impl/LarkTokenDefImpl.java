@@ -27,9 +27,9 @@ public class LarkTokenDefImpl extends ASTWrapperPsiElement implements LarkTokenD
   }
 
   @Override
-  @NotNull
+  @Nullable
   public LarkExpansions getExpansions() {
-    return findNotNullChildByClass(LarkExpansions.class);
+    return findChildByClass(LarkExpansions.class);
   }
 
   @Override

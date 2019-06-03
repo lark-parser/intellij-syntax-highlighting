@@ -27,9 +27,9 @@ public class LarkRuleDefImpl extends ASTWrapperPsiElement implements LarkRuleDef
   }
 
   @Override
-  @NotNull
+  @Nullable
   public LarkExpansions getExpansions() {
-    return findNotNullChildByClass(LarkExpansions.class);
+    return findChildByClass(LarkExpansions.class);
   }
 
   @Override
