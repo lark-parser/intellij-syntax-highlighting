@@ -11,19 +11,25 @@ import static com.lark.syntax.psi.LarkTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.lark.syntax.psi.*;
 
-public class LarkImportArgsImpl extends ASTWrapperPsiElement implements LarkImportArgs {
+public class LarkAtomParImpl extends ASTWrapperPsiElement implements LarkAtomPar {
 
-  public LarkImportArgsImpl(@NotNull ASTNode node) {
+  public LarkAtomParImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull LarkVisitor visitor) {
-    visitor.visitImportArgs(this);
+    visitor.visitAtomPar(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof LarkVisitor) accept((LarkVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @Nullable
+  public LarkExpansions getExpansions() {
+    return findChildByClass(LarkExpansions.class);
   }
 
 }

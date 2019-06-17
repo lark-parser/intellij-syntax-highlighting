@@ -54,7 +54,6 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        System.out.println(tokenType);
         if (tokenType == null) {
             return EMPTY_KEYS;
         } else if (tokenType.equals(LarkTypes.COLON)) {

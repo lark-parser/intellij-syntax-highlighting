@@ -27,9 +27,33 @@ public class LarkExprImpl extends ASTWrapperPsiElement implements LarkExpr {
   }
 
   @Override
-  @NotNull
-  public LarkAtom getAtom() {
-    return findNotNullChildByClass(LarkAtom.class);
+  @Nullable
+  public LarkAtomLit getAtomLit() {
+    return findChildByClass(LarkAtomLit.class);
+  }
+
+  @Override
+  @Nullable
+  public LarkAtomOpt getAtomOpt() {
+    return findChildByClass(LarkAtomOpt.class);
+  }
+
+  @Override
+  @Nullable
+  public LarkAtomPar getAtomPar() {
+    return findChildByClass(LarkAtomPar.class);
+  }
+
+  @Override
+  @Nullable
+  public LarkAtomRan getAtomRan() {
+    return findChildByClass(LarkAtomRan.class);
+  }
+
+  @Override
+  @Nullable
+  public LarkAtomRef getAtomRef() {
+    return findChildByClass(LarkAtomRef.class);
   }
 
 }

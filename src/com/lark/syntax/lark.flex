@@ -25,6 +25,8 @@ TOKEN = _?[A-Z][_A-Z0-9]*
 STRING = \" ([^\"\\\n\r]|\\[^\n\r])* \" i?
 REGEXP = \/ ([^\/\\\n\r]|\\[^\n\r])+ \/ [imslux]*
 
+%state EOF
+
 %%
 
 <YYINITIAL> ":"                 { return LarkTypes.COLON; }
@@ -50,4 +52,5 @@ REGEXP = \/ ([^\/\\\n\r]|\\[^\n\r])+ \/ [imslux]*
 <YYINITIAL> {COMMENT}           { return LarkTypes.COMMENT; }
 <YYINITIAL> {WHITE_SPACE}       { return TokenType.WHITE_SPACE; }
 <YYINITIAL> {NEWLINE}           { return LarkTypes.NEWLINE; }
-//<<EOF>>                         { return LarkTypes.NEWLINE; }
+<YYINITIAL> [^]                 { return TokenType.BAD_CHARACTER; }
+<YYINITIAL> <<EOF>>             { yybegin(EOF); return LarkTypes.NEWLINE; }

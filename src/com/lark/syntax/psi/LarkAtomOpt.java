@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface LarkImportArgs extends PsiElement {
+public interface LarkAtomOpt extends PsiElement {
+
+  @Nullable
+  LarkExpansions getExpansions();
 
 }

@@ -9,15 +9,20 @@ import com.lark.syntax.psi.impl.*;
 public interface LarkTypes {
 
   IElementType ALIAS = new LarkElementType("ALIAS");
-  IElementType ATOM = new LarkElementType("ATOM");
+  IElementType ATOM_LIT = new LarkElementType("ATOM_LIT");
+  IElementType ATOM_OPT = new LarkElementType("ATOM_OPT");
+  IElementType ATOM_PAR = new LarkElementType("ATOM_PAR");
+  IElementType ATOM_RAN = new LarkElementType("ATOM_RAN");
+  IElementType ATOM_REF = new LarkElementType("ATOM_REF");
+  IElementType DECLARE_STATEMENT = new LarkElementType("DECLARE_STATEMENT");
   IElementType EXPANSION = new LarkElementType("EXPANSION");
   IElementType EXPANSIONS = new LarkElementType("EXPANSIONS");
   IElementType EXPR = new LarkElementType("EXPR");
+  IElementType IGNORE_STATEMENT = new LarkElementType("IGNORE_STATEMENT");
   IElementType IMPORT_ARGS = new LarkElementType("IMPORT_ARGS");
+  IElementType IMPORT_STATEMENT = new LarkElementType("IMPORT_STATEMENT");
   IElementType PRIORITY = new LarkElementType("PRIORITY");
   IElementType RULE_DEF = new LarkElementType("RULE_DEF");
-  IElementType RULE_NAME = new LarkElementType("RULE_NAME");
-  IElementType STATEMENT = new LarkElementType("STATEMENT");
   IElementType TOKEN_DEF = new LarkElementType("TOKEN_DEF");
 
   IElementType ARROW = new LarkTokenType("ARROW");
@@ -37,6 +42,7 @@ public interface LarkTypes {
   IElementType QUANT = new LarkTokenType("QUANT");
   IElementType REGEXP = new LarkTokenType("REGEXP");
   IElementType RULE = new LarkTokenType("RULE");
+  IElementType RULE_NAME = new LarkTokenType("rule_name");
   IElementType STRING = new LarkTokenType("STRING");
   IElementType TILDE = new LarkTokenType("TILDE");
   IElementType TOKEN = new LarkTokenType("TOKEN");
@@ -48,8 +54,23 @@ public interface LarkTypes {
       if (type == ALIAS) {
         return new LarkAliasImpl(node);
       }
-      else if (type == ATOM) {
-        return new LarkAtomImpl(node);
+      else if (type == ATOM_LIT) {
+        return new LarkAtomLitImpl(node);
+      }
+      else if (type == ATOM_OPT) {
+        return new LarkAtomOptImpl(node);
+      }
+      else if (type == ATOM_PAR) {
+        return new LarkAtomParImpl(node);
+      }
+      else if (type == ATOM_RAN) {
+        return new LarkAtomRanImpl(node);
+      }
+      else if (type == ATOM_REF) {
+        return new LarkAtomRefImpl(node);
+      }
+      else if (type == DECLARE_STATEMENT) {
+        return new LarkDeclareStatementImpl(node);
       }
       else if (type == EXPANSION) {
         return new LarkExpansionImpl(node);
@@ -60,20 +81,20 @@ public interface LarkTypes {
       else if (type == EXPR) {
         return new LarkExprImpl(node);
       }
+      else if (type == IGNORE_STATEMENT) {
+        return new LarkIgnoreStatementImpl(node);
+      }
       else if (type == IMPORT_ARGS) {
         return new LarkImportArgsImpl(node);
+      }
+      else if (type == IMPORT_STATEMENT) {
+        return new LarkImportStatementImpl(node);
       }
       else if (type == PRIORITY) {
         return new LarkPriorityImpl(node);
       }
       else if (type == RULE_DEF) {
         return new LarkRuleDefImpl(node);
-      }
-      else if (type == RULE_NAME) {
-        return new LarkRuleNameImpl(node);
-      }
-      else if (type == STATEMENT) {
-        return new LarkStatementImpl(node);
       }
       else if (type == TOKEN_DEF) {
         return new LarkTokenDefImpl(node);

@@ -11,7 +11,27 @@ public class LarkVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitAtom(@NotNull LarkAtom o) {
+  public void visitAtomLit(@NotNull LarkAtomLit o) {
+    visitPsiElement(o);
+  }
+
+  public void visitAtomOpt(@NotNull LarkAtomOpt o) {
+    visitPsiElement(o);
+  }
+
+  public void visitAtomPar(@NotNull LarkAtomPar o) {
+    visitPsiElement(o);
+  }
+
+  public void visitAtomRan(@NotNull LarkAtomRan o) {
+    visitPsiElement(o);
+  }
+
+  public void visitAtomRef(@NotNull LarkAtomRef o) {
+    visitPsiElement(o);
+  }
+
+  public void visitDeclareStatement(@NotNull LarkDeclareStatement o) {
     visitPsiElement(o);
   }
 
@@ -27,7 +47,15 @@ public class LarkVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitIgnoreStatement(@NotNull LarkIgnoreStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitImportArgs(@NotNull LarkImportArgs o) {
+    visitPsiElement(o);
+  }
+
+  public void visitImportStatement(@NotNull LarkImportStatement o) {
     visitPsiElement(o);
   }
 
@@ -36,14 +64,6 @@ public class LarkVisitor extends PsiElementVisitor {
   }
 
   public void visitRuleDef(@NotNull LarkRuleDef o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRuleName(@NotNull LarkRuleName o) {
-    visitPsiElement(o);
-  }
-
-  public void visitStatement(@NotNull LarkStatement o) {
     visitPsiElement(o);
   }
 
