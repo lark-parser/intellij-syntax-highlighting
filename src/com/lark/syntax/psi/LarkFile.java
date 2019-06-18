@@ -1,7 +1,6 @@
 package com.lark.syntax.psi;
 
 import com.intellij.extapi.psi.PsiFileBase;
-import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
 import com.lark.syntax.LarkFileType;
