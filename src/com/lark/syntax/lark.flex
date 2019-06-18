@@ -24,6 +24,7 @@ RULE = \!?\??_?[a-z][_a-z0-9]*
 TOKEN = _?[A-Z][_A-Z0-9]*
 STRING = \" ([^\"\\\n\r]|\\[^\n\r])* \" i?
 REGEXP = \/ ([^\/\\\n\r]|\\[^\n\r])+ \/ [imslux]*
+NUMBER = [0-9]+
 
 %state EOF
 
@@ -47,6 +48,7 @@ REGEXP = \/ ([^\/\\\n\r]|\\[^\n\r])+ \/ [imslux]*
 <YYINITIAL> "|"                 { return LarkTypes.VBAR; }
 <YYINITIAL> {RULE}              { return LarkTypes.RULE; }
 <YYINITIAL> {TOKEN}             { return LarkTypes.TOKEN; }
+<YYINITIAL> {NUMBER}            { return LarkTypes.NUMBER; }
 <YYINITIAL> {STRING}            { return LarkTypes.STRING; }
 <YYINITIAL> {REGEXP}            { return LarkTypes.REGEXP; }
 <YYINITIAL> {COMMENT}           { return LarkTypes.COMMENT; }

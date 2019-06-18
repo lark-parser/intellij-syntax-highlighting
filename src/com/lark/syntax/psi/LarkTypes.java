@@ -42,7 +42,6 @@ public interface LarkTypes {
   IElementType QUANT = new LarkTokenType("QUANT");
   IElementType REGEXP = new LarkTokenType("REGEXP");
   IElementType RULE = new LarkTokenType("RULE");
-  IElementType RULE_NAME = new LarkTokenType("rule_name");
   IElementType STRING = new LarkTokenType("STRING");
   IElementType TILDE = new LarkTokenType("TILDE");
   IElementType TOKEN = new LarkTokenType("TOKEN");
