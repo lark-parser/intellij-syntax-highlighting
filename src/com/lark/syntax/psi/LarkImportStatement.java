@@ -10,4 +10,6 @@ public interface LarkImportStatement extends PsiElement {
   @Nullable
   LarkImportArgs getImportArgs();
 
+    String getDefName();
+
 }

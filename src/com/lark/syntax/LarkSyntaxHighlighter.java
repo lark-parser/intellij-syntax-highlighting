@@ -15,6 +15,8 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey KEYWORD = createTextAttributesKey("LARK_KEYWORD",
             DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey NUMBER = createTextAttributesKey("LARK_NUMBER",
+            DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey ASSIGN = createTextAttributesKey("LARK_ASSIGN",
             DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey ALIAS = createTextAttributesKey("LARK_ALIAS",
@@ -34,6 +36,7 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey BAD_CHARS = createTextAttributesKey("LARK_BAD_CHARS",
             HighlighterColors.BAD_CHARACTER);
     private static final TextAttributesKey[] KEYWORD_KEYS = new TextAttributesKey[]{KEYWORD};
+    private static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
     private static final TextAttributesKey[] ASSIGN_KEYS = new TextAttributesKey[]{ASSIGN};
     private static final TextAttributesKey[] ALIAS_KEYS = new TextAttributesKey[]{ALIAS};
     private static final TextAttributesKey[] OPERATORS_KEYS = new TextAttributesKey[]{OPERATOR};
@@ -65,6 +68,8 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
         } else if (tokenType.equals(LarkTypes.QUANT) ||
                 tokenType.equals(LarkTypes.VBAR)) {
             return OPERATORS_KEYS;
+        } else if (tokenType.equals(LarkTypes.NUMBER)) {
+            return NUMBER_KEYS;
         } else if (tokenType.equals(LarkTypes.STRING)) {
             return STRING_KEYS;
         } else if (tokenType.equals(LarkTypes.REGEXP)) {
@@ -84,10 +89,12 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
                 tokenType.equals(LarkTypes.OP) ||
                 tokenType.equals(LarkTypes.CP) ||
                 tokenType.equals(LarkTypes.OB) ||
-                tokenType.equals(LarkTypes.CB)
+                tokenType.equals(LarkTypes.CB) ||
+                tokenType.equals(LarkTypes.DOT)
         ) {
             return EMPTY_KEYS;
         } else {
+            System.out.print("Unhandled: ");
             System.out.println(tokenType);
             return EMPTY_KEYS;
         }

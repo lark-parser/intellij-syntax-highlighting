@@ -38,4 +38,9 @@ public class LarkRuleDefImpl extends ASTWrapperPsiElement implements LarkRuleDef
     return findChildByClass(LarkPriority.class);
   }
 
+    @Override
+    public String getDefName() {
+        return LarkPsiImplUtil.getDefName(this);
+    }
+
 }

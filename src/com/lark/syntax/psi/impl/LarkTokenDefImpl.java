@@ -38,4 +38,9 @@ public class LarkTokenDefImpl extends ASTWrapperPsiElement implements LarkTokenD
     return findChildByClass(LarkPriority.class);
   }
 
+    @Override
+    public String getDefName() {
+        return LarkPsiImplUtil.getDefName(this);
+    }
+
 }

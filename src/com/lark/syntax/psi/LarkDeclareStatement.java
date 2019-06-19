@@ -7,4 +7,6 @@ import com.intellij.psi.PsiElement;
 
 public interface LarkDeclareStatement extends PsiElement {
 
+    String[] getDefNames();
+
 }

@@ -13,4 +13,6 @@ public interface LarkRuleDef extends PsiElement {
   @Nullable
   LarkPriority getPriority();
 
+    String getDefName();
+
 }

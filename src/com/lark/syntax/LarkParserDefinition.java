@@ -52,9 +52,6 @@ public class LarkParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public PsiElement createElement(ASTNode astNode) {
-        System.out.println("---------------------------------");
-        System.out.println(astNode);
-        System.out.println('\'' + astNode.getText() + '\'');
         return LarkTypes.Factory.createElement(astNode);
     }
 

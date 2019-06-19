@@ -32,4 +32,9 @@ public class LarkImportStatementImpl extends ASTWrapperPsiElement implements Lar
     return findChildByClass(LarkImportArgs.class);
   }
 
+    @Override
+    public String getDefName() {
+        return LarkPsiImplUtil.getDefName(this);
+    }
+
 }

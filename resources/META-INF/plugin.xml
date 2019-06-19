@@ -1,8 +1,10 @@
 <idea-plugin>
   <id>com.lark.syntax</id>
   <name>Lark Grammar Syntax Highlighter</name>
-  <version>1.0</version>
-  <vendor email="trampchamp@hotmail.de" url="https://github.com/lark-parser/lark">MegaIng</vendor>
+    <version>0.1</version>
+    <vendor email="trampchamp@hotmail.de" url="https://github.com/lark-parser/intellij-lark-syntax-highlighting">
+        MegaIng
+    </vendor>
 
   <description>
     Support for Syntax highlighting of BNF-grammar with lark-flavour.
@@ -13,11 +15,8 @@
     Initial commit. Currently testing that anything works.
   </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
   <idea-version since-build="173.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
   <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
@@ -25,6 +24,7 @@
     <lang.parserDefinition language="lark" implementationClass="com.lark.syntax.LarkParserDefinition"/>
     <lang.syntaxHighlighterFactory language="lark" implementationClass="com.lark.syntax.LarkSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.lark.syntax.LarkColorSettingsPage"/>
+      <completion.contributor language="lark" implementationClass="com.lark.syntax.LarkCompletionContributor"/>
   </extensions>
 
   <actions>
