@@ -13,6 +13,7 @@ To install, you just need to download the .jar file and go in you IDE go to `Set
     * For known ones, or report your own, look into the [issue tracker](https://github.com/MegaIng/lark-syntax-highlighting/issues)
 - [x] Correct Syntax-Highlighting
     * improvements are still requierd
+    * can be modified in Settings->Editor->Color Scheme->Lark
 - [ ] Auto-completion inside of lark files
     * mostly done, should be finished soon
 - [ ] [Maybe/Very Late] Python integration, especially in regard to Transformers
