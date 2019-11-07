@@ -4,6 +4,7 @@ package com.lark.syntax.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiLanguageInjectionHost;
 
 public class LarkVisitor extends PsiElementVisitor {
 
@@ -11,7 +12,11 @@ public class LarkVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitAtomLit(@NotNull LarkAtomLit o) {
+    public void visitAtomLitRegex(@NotNull LarkAtomLitRegex o) {
+        visitPsiLanguageInjectionHost(o);
+    }
+
+    public void visitAtomLitString(@NotNull LarkAtomLitString o) {
     visitPsiElement(o);
   }
 
@@ -28,7 +33,7 @@ public class LarkVisitor extends PsiElementVisitor {
   }
 
   public void visitAtomRef(@NotNull LarkAtomRef o) {
-    visitPsiElement(o);
+      visitNameReference(o);
   }
 
   public void visitDeclareStatement(@NotNull LarkDeclareStatement o) {
@@ -63,13 +68,25 @@ public class LarkVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRuleDef(@NotNull LarkRuleDef o) {
+    public void visitRuleDef(@NotNull LarkRuleDef o) {
+        visitNamedElement(o);
+    }
+
+    public void visitTokenDef(@NotNull LarkTokenDef o) {
+        visitNamedElement(o);
+    }
+
+    public void visitNameReference(@NotNull LarkNameReference o) {
+        visitPsiElement(o);
+    }
+
+    public void visitNamedElement(@NotNull LarkNamedElement o) {
     visitPsiElement(o);
   }
 
-  public void visitTokenDef(@NotNull LarkTokenDef o) {
-    visitPsiElement(o);
-  }
+    public void visitPsiLanguageInjectionHost(@NotNull PsiLanguageInjectionHost o) {
+        visitElement(o);
+    }
 
   public void visitPsiElement(@NotNull PsiElement o) {
     visitElement(o);

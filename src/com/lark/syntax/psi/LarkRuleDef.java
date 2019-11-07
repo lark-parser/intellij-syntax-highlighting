@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface LarkRuleDef extends PsiElement {
+public interface LarkRuleDef extends LarkNamedElement {
 
   @Nullable
   LarkExpansions getExpansions();
@@ -14,5 +14,9 @@ public interface LarkRuleDef extends PsiElement {
   LarkPriority getPriority();
 
     String getDefName();
+
+    PsiElement getNameIdentifier();
+
+    PsiElement setName(String newName);
 
 }

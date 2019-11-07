@@ -13,7 +13,6 @@ import com.intellij.psi.TokenType;
  * <a href="http://www.jflex.de/">JFlex</a> 1.7.0
  * from the specification file <tt>lark.flex</tt>
  */
-@SuppressWarnings("ALL")
 class LarkLexer implements FlexLexer {
 
   /** This character denotes the end of file */

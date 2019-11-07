@@ -26,9 +26,9 @@ public class LarkImportArgsImpl extends ASTWrapperPsiElement implements LarkImpo
     else super.accept(visitor);
   }
 
-    @Override
-    public String getDefName() {
-        return LarkPsiImplUtil.getDefName(this);
-    }
+  @Override
+  public String getDefName() {
+    return LarkPsiImplUtil.getDefName(this);
+  }
 
 }

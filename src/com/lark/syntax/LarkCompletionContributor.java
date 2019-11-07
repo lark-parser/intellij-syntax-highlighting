@@ -6,10 +6,11 @@ import com.intellij.patterns.PlatformPatterns;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.ProcessingContext;
 import com.lark.syntax.psi.LarkFile;
-import com.lark.syntax.psi.LarkTokenType;
 import com.lark.syntax.psi.LarkTypes;
 import com.lark.syntax.psi.impl.LarkAtomRefImpl;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 public class LarkCompletionContributor extends CompletionContributor {
     public LarkCompletionContributor() {
@@ -28,9 +29,12 @@ public class LarkCompletionContributor extends CompletionContributor {
         PsiElement e = completionParameters.getPosition();
         PsiElement p1 = e.getParent();
         PsiElement p2 = p1.getParent();
-        if (p1 instanceof LarkAtomRefImpl) {
-            LarkUtil.findRules(file,
-                    (name) -> completionResultSet.addElement(LookupElementBuilder.create(name).withCaseSensitivity(true)));
+        if (!(p1 instanceof LarkAtomRefImpl) && (p2 instanceof LarkFile)) {
+            completionResultSet.addAllElements(Arrays.asList(
+                    LookupElementBuilder.create("%import").withCaseSensitivity(true),
+                    LookupElementBuilder.create("%ignore").withCaseSensitivity(true),
+                    LookupElementBuilder.create("%declare").withCaseSensitivity(true))
+            );
         }
     }
 }

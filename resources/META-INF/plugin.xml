@@ -1,34 +1,40 @@
 <idea-plugin>
-  <id>com.lark.syntax</id>
-  <name>Lark Grammar Syntax Highlighter</name>
-    <version>0.1</version>
+    <id>com.lark.syntax</id>
+    <name>Lark Grammar Syntax Highlighter</name>
+    <version>0.2</version>
     <vendor email="trampchamp@hotmail.de" url="https://github.com/lark-parser/intellij-lark-syntax-highlighting">
         MegaIng
     </vendor>
 
-  <description>
-    Support for Syntax highlighting of BNF-grammar with lark-flavour.
-    Is currently work-in-progress
-  </description>
+    <description>
+        Support for syntax-highlighting and IntelliSense-features of EBNF-grammar with lark-flavour.
+    </description>
 
-  <change-notes>
-    Initial commit. Currently testing that anything works.
-  </change-notes>
+    <change-notes>
+        Added syntax highlighting
+        Added code completion/reference resolving
+        Added regex injection + dependency on python-module
+    </change-notes>
 
-  <idea-version since-build="173.0"/>
+    <idea-version since-build="173.0"/>
 
-  <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.python</depends>
+    <depends optional="true">com.intellij</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.lark.syntax.LarkFileTypeFactory"/>
-    <lang.parserDefinition language="lark" implementationClass="com.lark.syntax.LarkParserDefinition"/>
-    <lang.syntaxHighlighterFactory language="lark" implementationClass="com.lark.syntax.LarkSyntaxHighlighterFactory"/>
-    <colorSettingsPage implementation="com.lark.syntax.LarkColorSettingsPage"/>
-      <completion.contributor language="lark" implementationClass="com.lark.syntax.LarkCompletionContributor"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.lark.syntax.LarkFileTypeFactory"/>
+        <lang.parserDefinition language="lark" implementationClass="com.lark.syntax.LarkParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="lark"
+                                       implementationClass="com.lark.syntax.LarkSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.lark.syntax.LarkColorSettingsPage"/>
+        <completion.contributor language="lark" implementationClass="com.lark.syntax.LarkCompletionContributor"/>
+        <psi.referenceProvider language="lark" providerClass="com.lark.syntax.LarkReferenceProvider"/>
+        <multiHostInjector implementation="com.lark.syntax.LarkRegexInjector"/>
+    </extensions>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
 
 </idea-plugin>

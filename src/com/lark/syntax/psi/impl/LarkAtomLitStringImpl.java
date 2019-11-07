@@ -11,14 +11,14 @@ import static com.lark.syntax.psi.LarkTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.lark.syntax.psi.*;
 
-public class LarkAtomLitImpl extends ASTWrapperPsiElement implements LarkAtomLit {
+public class LarkAtomLitStringImpl extends ASTWrapperPsiElement implements LarkAtomLitString {
 
-  public LarkAtomLitImpl(@NotNull ASTNode node) {
+  public LarkAtomLitStringImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull LarkVisitor visitor) {
-    visitor.visitAtomLit(this);
+    visitor.visitAtomLitString(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {

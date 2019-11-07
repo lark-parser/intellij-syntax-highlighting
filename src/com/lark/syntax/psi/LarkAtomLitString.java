@@ -5,6 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface LarkAtomLit extends PsiElement {
+public interface LarkAtomLitString extends PsiElement {
 
 }

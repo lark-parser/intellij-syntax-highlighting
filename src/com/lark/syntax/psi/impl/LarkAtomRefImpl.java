@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.lark.syntax.psi.LarkTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.lark.syntax.psi.*;
 
-public class LarkAtomRefImpl extends ASTWrapperPsiElement implements LarkAtomRef {
+public class LarkAtomRefImpl extends LarkNameReferenceImpl implements LarkAtomRef {
 
   public LarkAtomRefImpl(@NotNull ASTNode node) {
     super(node);

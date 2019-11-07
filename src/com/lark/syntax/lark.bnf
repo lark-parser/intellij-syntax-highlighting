@@ -28,8 +28,8 @@ private item_recovery_ ::= !(RULE|TOKEN|IGNORE|IMPORT|DECLARE|COMMENT|line_end_)
 
 private line_end_ ::= COMMENT? NEWLINE
 
-rule_def ::= RULE priority? COLON expansions line_end_ {pin=1 methods=[getDefName]}
-token_def ::= TOKEN priority? COLON expansions line_end_ {pin=1 methods=[getDefName]}
+rule_def ::= RULE priority? COLON expansions line_end_ {pin=1 mixin="com.lark.syntax.psi.impl.LarkNamedElementImpl" implements="com.lark.syntax.psi.LarkNamedElement" methods=[getDefName getNameIdentifier setName]}
+token_def ::= TOKEN priority? COLON expansions line_end_ {pin=1 mixin="com.lark.syntax.psi.impl.LarkNamedElementImpl" implements="com.lark.syntax.psi.LarkNamedElement" methods=[getDefName getNameIdentifier setName]}
 
 priority ::= DOT NUMBER {pin=1}
 
@@ -52,11 +52,11 @@ expr ::= atom_ [QUANT | range]
 
 private range ::= TILDE NUMBER DOT_DOT NUMBER {pin=1}
 
-private atom_ ::= atom_par|atom_opt|atom_ran|atom_ref|atom_lit
+private atom_ ::= atom_par|atom_opt|atom_ran|atom_ref|atom_lit_regex|atom_lit_string
 
 atom_par ::= OP expansions CP {pin=1}
 atom_opt ::= OB expansions CB {pin=1}
 atom_ran ::= STRING DOT_DOT STRING  {pin=2}
-atom_ref ::= RULE | TOKEN
-atom_lit ::= (REGEXP | STRING)
-
+atom_ref ::= RULE | TOKEN { mixin="com.lark.syntax.psi.impl.LarkNameReferenceImpl" implements="com.lark.syntax.psi.LarkNameReference" }
+atom_lit_regex ::= REGEXP {implements="com.intellij.psi.PsiLanguageInjectionHost" methods=[createLiteralTextEscaper updateText isValidHost]}
+atom_lit_string ::= STRING

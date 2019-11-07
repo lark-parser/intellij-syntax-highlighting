@@ -9,7 +9,8 @@ import com.lark.syntax.psi.impl.*;
 public interface LarkTypes {
 
   IElementType ALIAS = new LarkElementType("ALIAS");
-  IElementType ATOM_LIT = new LarkElementType("ATOM_LIT");
+    IElementType ATOM_LIT_REGEX = new LarkElementType("ATOM_LIT_REGEX");
+    IElementType ATOM_LIT_STRING = new LarkElementType("ATOM_LIT_STRING");
   IElementType ATOM_OPT = new LarkElementType("ATOM_OPT");
   IElementType ATOM_PAR = new LarkElementType("ATOM_PAR");
   IElementType ATOM_RAN = new LarkElementType("ATOM_RAN");
@@ -52,9 +53,10 @@ public interface LarkTypes {
       IElementType type = node.getElementType();
       if (type == ALIAS) {
         return new LarkAliasImpl(node);
-      }
-      else if (type == ATOM_LIT) {
-        return new LarkAtomLitImpl(node);
+      } else if (type == ATOM_LIT_REGEX) {
+          return new LarkAtomLitRegexImpl(node);
+      } else if (type == ATOM_LIT_STRING) {
+          return new LarkAtomLitStringImpl(node);
       }
       else if (type == ATOM_OPT) {
         return new LarkAtomOptImpl(node);

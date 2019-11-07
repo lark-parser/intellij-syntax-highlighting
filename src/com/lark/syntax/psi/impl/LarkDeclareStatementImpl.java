@@ -26,9 +26,9 @@ public class LarkDeclareStatementImpl extends ASTWrapperPsiElement implements La
     else super.accept(visitor);
   }
 
-    @Override
-    public String[] getDefNames() {
-        return LarkPsiImplUtil.getDefNames(this);
-    }
+  @Override
+  public String[] getDefNames() {
+    return LarkPsiImplUtil.getDefNames(this);
+  }
 
 }

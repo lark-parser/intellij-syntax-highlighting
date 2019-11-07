@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.lark.syntax.psi.LarkTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.lark.syntax.psi.*;
 
-public class LarkTokenDefImpl extends ASTWrapperPsiElement implements LarkTokenDef {
+public class LarkTokenDefImpl extends LarkNamedElementImpl implements LarkTokenDef {
 
   public LarkTokenDefImpl(@NotNull ASTNode node) {
     super(node);
@@ -38,9 +37,19 @@ public class LarkTokenDefImpl extends ASTWrapperPsiElement implements LarkTokenD
     return findChildByClass(LarkPriority.class);
   }
 
-    @Override
-    public String getDefName() {
-        return LarkPsiImplUtil.getDefName(this);
-    }
+  @Override
+  public String getDefName() {
+    return LarkPsiImplUtil.getDefName(this);
+  }
+
+  @Override
+  public PsiElement getNameIdentifier() {
+    return LarkPsiImplUtil.getNameIdentifier(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return LarkPsiImplUtil.setName(this, newName);
+  }
 
 }

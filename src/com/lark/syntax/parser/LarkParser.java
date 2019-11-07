@@ -70,7 +70,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // atom_par|atom_opt|atom_ran|atom_ref|atom_lit
+  // atom_par|atom_opt|atom_ran|atom_ref|atom_lit_regex|atom_lit_string
   static boolean atom_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "atom_")) return false;
     boolean r;
@@ -78,20 +78,32 @@ public class LarkParser implements PsiParser, LightPsiParser {
     if (!r) r = atom_opt(b, l + 1);
     if (!r) r = atom_ran(b, l + 1);
     if (!r) r = atom_ref(b, l + 1);
-    if (!r) r = atom_lit(b, l + 1);
+    if (!r) r = atom_lit_regex(b, l + 1);
+    if (!r) r = atom_lit_string(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // REGEXP | STRING
-  public static boolean atom_lit(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "atom_lit")) return false;
-    if (!nextTokenIs(b, "<atom lit>", REGEXP, STRING)) return false;
+  // REGEXP
+  public static boolean atom_lit_regex(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "atom_lit_regex")) return false;
+    if (!nextTokenIs(b, REGEXP)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, ATOM_LIT, "<atom lit>");
+    Marker m = enter_section_(b);
     r = consumeToken(b, REGEXP);
-    if (!r) r = consumeToken(b, STRING);
-    exit_section_(b, l, m, r, false, null);
+    exit_section_(b, m, ATOM_LIT_REGEX, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // STRING
+  public static boolean atom_lit_string(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "atom_lit_string")) return false;
+    if (!nextTokenIs(b, STRING)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, STRING);
+    exit_section_(b, m, ATOM_LIT_STRING, r);
     return r;
   }
 
@@ -287,7 +299,7 @@ public class LarkParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, IMPORT_ARGS, "<import args>");
     r = import_args_0(b, l + 1);
-      r = r && import_args_1(b, l + 1);
+    r = r && import_args_1(b, l + 1);
     r = r && import_args_2(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -300,30 +312,30 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-    // (RULE DOT)*
-    private static boolean import_args_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "import_args_1")) return false;
+  // (RULE DOT)*
+  private static boolean import_args_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_args_1")) return false;
     while (true) {
       int c = current_position_(b);
-        if (!import_args_1_0(b, l + 1)) break;
-        if (!empty_element_parsed_guard_(b, "import_args_1", c)) break;
+      if (!import_args_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "import_args_1", c)) break;
     }
     return true;
   }
 
-    // RULE DOT
-    private static boolean import_args_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "import_args_1_0")) return false;
+  // RULE DOT
+  private static boolean import_args_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_args_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-        r = consumeTokens(b, 0, RULE, DOT);
+    r = consumeTokens(b, 0, RULE, DOT);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // RULE|TOKEN
   private static boolean import_args_2(PsiBuilder b, int l) {
-      if (!recursion_guard_(b, l, "import_args_2")) return false;
+    if (!recursion_guard_(b, l, "import_args_2")) return false;
     boolean r;
     r = consumeToken(b, RULE);
     if (!r) r = consumeToken(b, TOKEN);
@@ -346,32 +358,32 @@ public class LarkParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-    // [ARROW (RULE|TOKEN)]
+  // [ARROW (RULE|TOKEN)]
   private static boolean import_statement_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "import_statement_2")) return false;
-      import_statement_2_0(b, l + 1);
+    import_statement_2_0(b, l + 1);
     return true;
   }
 
-    // ARROW (RULE|TOKEN)
-    private static boolean import_statement_2_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "import_statement_2_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, ARROW);
-        r = r && import_statement_2_0_1(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
+  // ARROW (RULE|TOKEN)
+  private static boolean import_statement_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_statement_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ARROW);
+    r = r && import_statement_2_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
 
-    // RULE|TOKEN
-    private static boolean import_statement_2_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "import_statement_2_0_1")) return false;
-        boolean r;
-        r = consumeToken(b, RULE);
-        if (!r) r = consumeToken(b, TOKEN);
-        return r;
-    }
+  // RULE|TOKEN
+  private static boolean import_statement_2_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_statement_2_0_1")) return false;
+    boolean r;
+    r = consumeToken(b, RULE);
+    if (!r) r = consumeToken(b, TOKEN);
+    return r;
+  }
 
   /* ********************************************************** */
   // rule_def

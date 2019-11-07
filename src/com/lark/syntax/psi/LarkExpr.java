@@ -8,7 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface LarkExpr extends PsiElement {
 
   @Nullable
-  LarkAtomLit getAtomLit();
+  LarkAtomLitRegex getAtomLitRegex();
+
+    @Nullable
+    LarkAtomLitString getAtomLitString();
 
   @Nullable
   LarkAtomOpt getAtomOpt();
