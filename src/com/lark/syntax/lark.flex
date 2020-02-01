@@ -31,6 +31,7 @@ NUMBER = [0-9]+
 %%
 
 <YYINITIAL> ":"                 { return LarkTypes.COLON; }
+<YYINITIAL> ","                 { return LarkTypes.COMMA; }
 <YYINITIAL> "."                 { return LarkTypes.DOT; }
 <YYINITIAL> ".."                { return LarkTypes.DOT_DOT; }
 <YYINITIAL> "%ignore"           { return LarkTypes.IGNORE; }

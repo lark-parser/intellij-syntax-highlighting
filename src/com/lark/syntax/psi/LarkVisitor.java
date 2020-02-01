@@ -56,7 +56,19 @@ public class LarkVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitImportArgs(@NotNull LarkImportArgs o) {
+    public void visitImportAlias(@NotNull LarkImportAlias o) {
+        visitPsiElement(o);
+    }
+
+    public void visitImportName(@NotNull LarkImportName o) {
+        visitPsiElement(o);
+    }
+
+    public void visitImportNames(@NotNull LarkImportNames o) {
+        visitPsiElement(o);
+    }
+
+    public void visitImportPath(@NotNull LarkImportPath o) {
     visitPsiElement(o);
   }
 

@@ -8,8 +8,14 @@ import com.intellij.psi.PsiElement;
 public interface LarkImportStatement extends PsiElement {
 
   @Nullable
-  LarkImportArgs getImportArgs();
+  LarkImportAlias getImportAlias();
 
-    String getDefName();
+  @Nullable
+  LarkImportNames getImportNames();
+
+  @Nullable
+  LarkImportPath getImportPath();
+
+  String[] getDefNames();
 
 }

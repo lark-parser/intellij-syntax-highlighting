@@ -23,9 +23,11 @@ public class LarkUtil {
                     consumer.consume(n);
                 }
             } else if (e instanceof LarkImportStatement) {
-                String n = ((LarkImportStatement) e).getDefName();
-                if (n != null) {
-                    consumer.consume(n);
+                String[] ns = ((LarkImportStatement) e).getDefNames();
+                for (String n : ns) {
+                    if (n != null) {
+                        consumer.consume(n);
+                    }
                 }
             } else if (e instanceof LarkDeclareStatement) {
                 String[] ns = ((LarkDeclareStatement) e).getDefNames();
@@ -51,9 +53,10 @@ public class LarkUtil {
                     consumer.accept(n, e);
                 }
             } else if (e instanceof LarkImportStatement) {
-                String n = ((LarkImportStatement) e).getDefName();
-                if (n != null) {
-                    consumer.accept(n, e);
+                String[] ns = ((LarkImportStatement) e).getDefNames();
+                for (String n : ns) {
+                    if (n != null)
+                        consumer.accept(n, e);
                 }
             } else if (e instanceof LarkDeclareStatement) {
                 String[] ns = ((LarkDeclareStatement) e).getDefNames();

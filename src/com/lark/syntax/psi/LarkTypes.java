@@ -9,8 +9,8 @@ import com.lark.syntax.psi.impl.*;
 public interface LarkTypes {
 
   IElementType ALIAS = new LarkElementType("ALIAS");
-    IElementType ATOM_LIT_REGEX = new LarkElementType("ATOM_LIT_REGEX");
-    IElementType ATOM_LIT_STRING = new LarkElementType("ATOM_LIT_STRING");
+  IElementType ATOM_LIT_REGEX = new LarkElementType("ATOM_LIT_REGEX");
+  IElementType ATOM_LIT_STRING = new LarkElementType("ATOM_LIT_STRING");
   IElementType ATOM_OPT = new LarkElementType("ATOM_OPT");
   IElementType ATOM_PAR = new LarkElementType("ATOM_PAR");
   IElementType ATOM_RAN = new LarkElementType("ATOM_RAN");
@@ -20,7 +20,10 @@ public interface LarkTypes {
   IElementType EXPANSIONS = new LarkElementType("EXPANSIONS");
   IElementType EXPR = new LarkElementType("EXPR");
   IElementType IGNORE_STATEMENT = new LarkElementType("IGNORE_STATEMENT");
-  IElementType IMPORT_ARGS = new LarkElementType("IMPORT_ARGS");
+  IElementType IMPORT_ALIAS = new LarkElementType("IMPORT_ALIAS");
+  IElementType IMPORT_NAME = new LarkElementType("IMPORT_NAME");
+  IElementType IMPORT_NAMES = new LarkElementType("IMPORT_NAMES");
+  IElementType IMPORT_PATH = new LarkElementType("IMPORT_PATH");
   IElementType IMPORT_STATEMENT = new LarkElementType("IMPORT_STATEMENT");
   IElementType PRIORITY = new LarkElementType("PRIORITY");
   IElementType RULE_DEF = new LarkElementType("RULE_DEF");
@@ -29,6 +32,7 @@ public interface LarkTypes {
   IElementType ARROW = new LarkTokenType("ARROW");
   IElementType CB = new LarkTokenType("CB");
   IElementType COLON = new LarkTokenType("COLON");
+  IElementType COMMA = new LarkTokenType("COMMA");
   IElementType COMMENT = new LarkTokenType("COMMENT");
   IElementType CP = new LarkTokenType("CP");
   IElementType DECLARE = new LarkTokenType("DECLARE");
@@ -54,9 +58,9 @@ public interface LarkTypes {
       if (type == ALIAS) {
         return new LarkAliasImpl(node);
       } else if (type == ATOM_LIT_REGEX) {
-          return new LarkAtomLitRegexImpl(node);
+        return new LarkAtomLitRegexImpl(node);
       } else if (type == ATOM_LIT_STRING) {
-          return new LarkAtomLitStringImpl(node);
+        return new LarkAtomLitStringImpl(node);
       }
       else if (type == ATOM_OPT) {
         return new LarkAtomOptImpl(node);
@@ -84,9 +88,14 @@ public interface LarkTypes {
       }
       else if (type == IGNORE_STATEMENT) {
         return new LarkIgnoreStatementImpl(node);
-      }
-      else if (type == IMPORT_ARGS) {
-        return new LarkImportArgsImpl(node);
+      } else if (type == IMPORT_ALIAS) {
+        return new LarkImportAliasImpl(node);
+      } else if (type == IMPORT_NAME) {
+        return new LarkImportNameImpl(node);
+      } else if (type == IMPORT_NAMES) {
+        return new LarkImportNamesImpl(node);
+      } else if (type == IMPORT_PATH) {
+        return new LarkImportPathImpl(node);
       }
       else if (type == IMPORT_STATEMENT) {
         return new LarkImportStatementImpl(node);

@@ -35,10 +35,17 @@ priority ::= DOT NUMBER {pin=1}
 
 
 ignore_statement ::= IGNORE expansions line_end_ {pin=1}
-import_statement ::= IMPORT import_args [ARROW (RULE|TOKEN)] line_end_ {pin=1 methods=[getDefName]}
+import_statement ::= IMPORT import_path import_args? line_end_ {pin=1 methods=[getDefNames]}
 declare_statement ::= DECLARE TOKEN+ line_end_ {pin=1 methods=[getDefNames]}
 
-import_args ::= DOT? (RULE DOT)* (RULE|TOKEN) {methods=[getDefName]}
+import_path ::= DOT? (RULE DOT)* (RULE|TOKEN) {methods=[getLastName]}
+private import_args ::= import_alias | import_names
+
+
+import_alias ::= ARROW (RULE|TOKEN) {pin=1  methods=[getDefName]}
+
+import_names ::= OP import_name (COMMA import_name)* CP {pin=1 methods=[getDefNames]}
+import_name ::= (RULE | TOKEN) [ARROW (RULE | TOKEN)] {methods=[getDefName]}
 
 expansions ::= alias (line_end_? VBAR alias)*
 

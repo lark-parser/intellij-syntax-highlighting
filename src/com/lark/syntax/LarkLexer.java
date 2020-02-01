@@ -54,10 +54,10 @@ class LarkLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\1\5\1\13\2\0\1\21\2\0\1\41\1\42\2\45\1"+
-    "\0\1\36\1\20\1\4\12\11\1\17\3\0\1\37\1\6\1\0\32\12\1\43\1\14\1\44\1\0\1\7"+
-    "\1\0\1\35\1\10\1\33\1\32\1\26\1\10\1\22\1\10\1\15\2\10\1\34\1\27\1\23\1\24"+
-    "\1\30\1\10\1\25\1\16\1\31\1\16\2\10\1\16\2\10\1\0\1\46\1\0\1\40\201\0");
+          "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\1\5\1\13\2\0\1\22\2\0\1\42\1\43\2\46\1" +
+                  "\20\1\37\1\21\1\4\12\11\1\17\3\0\1\40\1\6\1\0\32\12\1\44\1\14\1\45\1\0\1\7" +
+                  "\1\0\1\36\1\10\1\34\1\33\1\27\1\10\1\23\1\10\1\15\2\10\1\35\1\30\1\24\1\25" +
+                  "\1\31\1\10\1\26\1\16\1\32\1\16\2\10\1\16\2\10\1\0\1\47\1\0\1\41\201\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -66,13 +66,13 @@ class LarkLexer implements FlexLexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\2\0\1\1\2\2\1\3\2\1\1\4\1\1\1\5"+
-    "\1\6\1\7\1\1\1\10\1\11\2\1\1\12\1\13"+
-    "\1\14\1\15\1\16\1\4\1\17\1\0\1\20\4\0"+
-    "\1\21\1\0\1\22\2\0\1\23\1\24\1\21\14\0"+
-    "\1\25\1\26\1\0\1\27";
+            "\1\6\1\7\1\1\1\10\1\11\1\12\2\1\1\13" +
+            "\1\14\1\15\1\16\1\17\1\4\1\20\1\0\1\21" +
+            "\4\0\1\22\1\0\1\23\2\0\1\24\1\25\1\22" +
+            "\14\0\1\26\1\27\1\0\1\30";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[55];
+      int[] result = new int[56];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -97,16 +97,16 @@ class LarkLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\47\0\47\0\116\0\47\0\165\0\234\0\303"+
-    "\0\352\0\u0111\0\u0138\0\u015f\0\u0186\0\u01ad\0\47\0\u01d4"+
-    "\0\u01fb\0\u0222\0\47\0\47\0\47\0\47\0\47\0\47"+
-    "\0\47\0\u0249\0\u0270\0\u0297\0\352\0\u02be\0\u01ad\0\u02e5"+
-    "\0\u030c\0\47\0\u0333\0\u035a\0\47\0\u0381\0\47\0\u03a8"+
-    "\0\u03cf\0\u03f6\0\u041d\0\u0444\0\u046b\0\u0492\0\u04b9\0\u04e0"+
-    "\0\u0507\0\u052e\0\u0555\0\47\0\47\0\u057c\0\47";
+          "\0\0\0\50\0\50\0\120\0\50\0\170\0\240\0\310" +
+                  "\0\360\0\u0118\0\u0140\0\u0168\0\u0190\0\u01b8\0\50\0\50" +
+                  "\0\u01e0\0\u0208\0\u0230\0\50\0\50\0\50\0\50\0\50" +
+                  "\0\50\0\50\0\u0258\0\u0280\0\u02a8\0\360\0\u02d0\0\u01b8" +
+                  "\0\u02f8\0\u0320\0\50\0\u0348\0\u0370\0\50\0\u0398\0\50" +
+                  "\0\u03c0\0\u03e8\0\u0410\0\u0438\0\u0460\0\u0488\0\u04b0\0\u04d8" +
+                  "\0\u0500\0\u0528\0\u0550\0\u0578\0\50\0\50\0\u05a0\0\50";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[55];
+      int[] result = new int[56];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -131,27 +131,27 @@ class LarkLexer implements FlexLexer {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12"+
     "\1\13\1\14\1\15\1\16\1\3\2\13\1\17\1\20"+
-    "\1\21\14\13\1\22\1\3\1\23\1\24\1\25\1\26"+
-    "\1\27\1\30\1\31\51\0\1\5\47\0\1\6\43\0"+
-    "\1\32\2\0\1\32\1\33\7\32\1\34\32\32\6\0"+
-    "\1\35\1\36\1\13\4\0\2\13\3\0\14\13\20\0"+
-    "\1\36\1\13\4\0\2\13\3\0\14\13\21\0\1\13"+
-    "\1\0\1\15\2\0\2\13\3\0\14\13\20\0\3\13"+
-    "\3\0\2\13\3\0\14\13\22\0\1\14\44\0\1\15"+
-    "\1\0\2\15\34\0\1\37\2\0\10\37\1\40\1\41"+
-    "\32\37\20\0\1\42\43\0\1\43\14\0\1\44\53\0"+
-    "\1\45\7\0\1\32\2\0\1\32\1\46\7\32\1\34"+
-    "\32\32\1\33\2\0\44\33\1\32\2\0\44\32\10\0"+
-    "\1\13\4\0\2\13\3\0\14\13\26\0\1\47\31\0"+
-    "\1\37\2\0\44\37\22\0\1\50\4\0\1\51\45\0"+
-    "\1\52\35\0\2\46\10\0\1\46\4\0\1\46\35\0"+
-    "\1\53\53\0\1\54\51\0\1\55\37\0\1\56\46\0"+
-    "\1\57\56\0\1\60\37\0\1\61\46\0\1\62\56\0"+
-    "\1\63\37\0\1\64\51\0\1\65\42\0\1\66\47\0"+
-    "\1\67\20\0";
+            "\1\21\1\22\14\13\1\23\1\3\1\24\1\25\1\26" +
+            "\1\27\1\30\1\31\1\32\52\0\1\5\50\0\1\6" +
+            "\44\0\1\33\2\0\1\33\1\34\7\33\1\35\33\33" +
+            "\6\0\1\36\1\37\1\13\4\0\2\13\4\0\14\13" +
+            "\20\0\1\37\1\13\4\0\2\13\4\0\14\13\21\0" +
+            "\1\13\1\0\1\15\2\0\2\13\4\0\14\13\20\0" +
+            "\3\13\3\0\2\13\4\0\14\13\22\0\1\14\45\0" +
+            "\1\15\1\0\2\15\35\0\1\40\2\0\10\40\1\41" +
+            "\1\42\33\40\21\0\1\43\43\0\1\44\15\0\1\45" +
+            "\54\0\1\46\7\0\1\33\2\0\1\33\1\47\7\33" +
+            "\1\35\33\33\1\34\2\0\45\34\1\33\2\0\45\33" +
+            "\10\0\1\13\4\0\2\13\4\0\14\13\26\0\1\50" +
+            "\32\0\1\40\2\0\45\40\23\0\1\51\4\0\1\52" +
+            "\46\0\1\53\35\0\2\47\11\0\1\47\4\0\1\47" +
+            "\36\0\1\54\54\0\1\55\52\0\1\56\40\0\1\57" +
+            "\47\0\1\60\57\0\1\61\40\0\1\62\47\0\1\63" +
+            "\57\0\1\64\40\0\1\65\52\0\1\66\43\0\1\67" +
+            "\50\0\1\70\20\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1443];
+      int[] result = new int[1480];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -189,12 +189,12 @@ class LarkLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\10\1\11\1\1\1\11\11\1\1\11\3\1"+
+          "\1\0\1\10\1\11\1\1\1\11\11\1\2\11\3\1" +
     "\7\11\1\0\1\1\4\0\1\1\1\0\1\11\2\0"+
     "\1\11\1\1\1\11\14\0\2\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[55];
+      int[] result = new int[56];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -507,7 +507,8 @@ class LarkLexer implements FlexLexer {
             case YYINITIAL: {
               yybegin(EOF); return LarkTypes.NEWLINE;
             }  // fall though
-            case 56: break;
+            case 57:
+                break;
             default:
         return null;
         }
@@ -518,117 +519,146 @@ class LarkLexer implements FlexLexer {
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 24: break;
+            case 25:
+                break;
           case 2: 
             { return LarkTypes.NEWLINE;
             } 
             // fall through
-          case 25: break;
+            case 26:
+                break;
           case 3: 
             { return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 26: break;
+            case 27:
+                break;
           case 4: 
             { return LarkTypes.QUANT;
             } 
             // fall through
-          case 27: break;
+            case 28:
+                break;
           case 5: 
             { return LarkTypes.RULE;
             } 
             // fall through
-          case 28: break;
+            case 29:
+                break;
           case 6: 
             { return LarkTypes.NUMBER;
             } 
             // fall through
-          case 29: break;
+            case 30:
+                break;
           case 7: 
             { return LarkTypes.TOKEN;
             } 
             // fall through
-          case 30: break;
+            case 31:
+                break;
           case 8: 
             { return LarkTypes.COLON;
             } 
             // fall through
-          case 31: break;
-          case 9: 
+            case 32:
+                break;
+          case 9: {
+              return LarkTypes.COMMA;
+          }
+          // fall through
+            case 33:
+                break;
+            case 10:
             { return LarkTypes.DOT;
             } 
             // fall through
-          case 32: break;
-          case 10: 
+            case 34:
+                break;
+            case 11:
             { return LarkTypes.TILDE;
             } 
             // fall through
-          case 33: break;
-          case 11: 
+            case 35:
+                break;
+            case 12:
             { return LarkTypes.OP;
             } 
             // fall through
-          case 34: break;
-          case 12: 
+            case 36:
+                break;
+            case 13:
             { return LarkTypes.CP;
             } 
             // fall through
-          case 35: break;
-          case 13: 
+            case 37:
+                break;
+            case 14:
             { return LarkTypes.OB;
             } 
             // fall through
-          case 36: break;
-          case 14: 
+            case 38:
+                break;
+            case 15:
             { return LarkTypes.CB;
             } 
             // fall through
-          case 37: break;
-          case 15: 
+            case 39:
+                break;
+            case 16:
             { return LarkTypes.VBAR;
             } 
             // fall through
-          case 38: break;
-          case 16: 
+            case 40:
+                break;
+            case 17:
             { return LarkTypes.COMMENT;
             } 
             // fall through
-          case 39: break;
-          case 17: 
+            case 41:
+                break;
+            case 18:
             { return LarkTypes.STRING;
             } 
             // fall through
-          case 40: break;
-          case 18: 
+            case 42:
+                break;
+            case 19:
             { return LarkTypes.DOT_DOT;
             } 
             // fall through
-          case 41: break;
-          case 19: 
+            case 43:
+                break;
+            case 20:
             { return LarkTypes.ARROW;
             } 
             // fall through
-          case 42: break;
-          case 20: 
+            case 44:
+                break;
+            case 21:
             { return LarkTypes.REGEXP;
             } 
             // fall through
-          case 43: break;
-          case 21: 
+            case 45:
+                break;
+            case 22:
             { return LarkTypes.IGNORE;
             } 
             // fall through
-          case 44: break;
-          case 22: 
+            case 46:
+                break;
+            case 23:
             { return LarkTypes.IMPORT;
             } 
             // fall through
-          case 45: break;
-          case 23: 
+            case 47:
+                break;
+            case 24:
             { return LarkTypes.DECLARE;
             } 
             // fall through
-          case 46: break;
+            case 48:
+                break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

@@ -90,7 +90,8 @@ public class LarkSyntaxHighlighter extends SyntaxHighlighterBase {
                 tokenType.equals(LarkTypes.CP) ||
                 tokenType.equals(LarkTypes.OB) ||
                 tokenType.equals(LarkTypes.CB) ||
-                tokenType.equals(LarkTypes.DOT)
+                tokenType.equals(LarkTypes.DOT) ||
+                tokenType.equals(LarkTypes.COMMA)
         ) {
             return EMPTY_KEYS;
         } else {

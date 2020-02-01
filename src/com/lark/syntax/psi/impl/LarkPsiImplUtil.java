@@ -10,6 +10,8 @@ import com.lark.syntax.LarkLiteralRegexEscaper;
 import com.lark.syntax.psi.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class LarkPsiImplUtil {
     private final static TokenSet IDENTIFIER = TokenSet.create(LarkTypes.TOKEN, LarkTypes.RULE);
 
@@ -35,23 +37,56 @@ public class LarkPsiImplUtil {
         return stripRuleName(node.getText());
     }
 
-    public static String getDefName(LarkImportStatement stmt) {
-        ASTNode node = stmt.getNode().findChildByType(IDENTIFIER);
-        if (node != null) {
+    public static String getDefName(LarkImportAlias importAlias) {
+        ASTNode node = importAlias.getNode().getLastChildNode();
+        if (node.getElementType().equals(LarkTypes.RULE) || node.getElementType().equals(LarkTypes.TOKEN)) {
             return node.getText();
-        } else if (stmt.getImportArgs() != null) {
-            return stmt.getImportArgs().getDefName();
         } else {
             return null;
         }
     }
 
-    public static String getDefName(LarkImportArgs importArgs) {
-        ASTNode node = importArgs.getNode().getLastChildNode();
+    public static String getDefName(LarkImportName importName) {
+        ASTNode node = importName.getNode().getLastChildNode();
         if (node.getElementType().equals(LarkTypes.RULE) || node.getElementType().equals(LarkTypes.TOKEN)) {
             return node.getText();
         } else {
             return null;
+        }
+    }
+
+    public static String getLastName(LarkImportPath importPath) {
+        ASTNode node = importPath.getNode().getLastChildNode();
+        if (node.getElementType().equals(LarkTypes.RULE) || node.getElementType().equals(LarkTypes.TOKEN)) {
+            return node.getText();
+        } else {
+            return null;
+        }
+
+    }
+
+    public static String[] getDefNames(LarkImportNames importNames) {
+        List<LarkImportName> children = importNames.getImportNameList();
+        String[] out = new String[children.size()];
+        int i = 0;
+        for (LarkImportName n : children) {
+            String name = n.getDefName();
+            if (name != null) {
+                out[i++] = name;
+            }
+        }
+        return out;
+    }
+
+    public static String[] getDefNames(LarkImportStatement importStatement) {
+        if (importStatement.getImportAlias() != null) {
+            return new String[]{importStatement.getImportAlias().getDefName()};
+        } else if (importStatement.getImportNames() != null) {
+            return importStatement.getImportNames().getDefNames();
+        } else if (importStatement.getImportPath() != null) {
+            return new String[]{importStatement.getImportPath().getLastName()};
+        } else {
+            return new String[]{};
         }
     }
 
